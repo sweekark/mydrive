@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!--google apis-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <!--parse cdn-->
+    <script src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+    <!--From my html-->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="js/map.js"></script>
+    <script src="js/layout.js"></script>
+
+    <style>
+        html, body, #map-canvas {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+
+    <script id="login-tpl" type="text/x-handlebars-template">
+        <form class="form-signin" role="form">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+            <input type="password" name="password" class="form-control" placeholder="Password" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </script>
+
+    <script id="welcome-tpl" type="text/x-handlebars-template">
+        <h2>Welcome, {{username}}!</h2>
+    </script>
+
+    <!--<form class="form-signin" role="form">-->
+        <!--<h2 class="form-signin-heading">Please sign in</h2>-->
+        <!--<input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">-->
+        <!--<input type="password" name="password" class="form-control" placeholder="Password" required="">-->
+        <!--<div class="checkbox">-->
+            <!--<label>-->
+                <!--<input type="checkbox" value="remember-me"> Remember me-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
+    <!--</form>-->
+</div>

@@ -1,0 +1,17 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "starting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "website"
+  ],
+  "author": "sweekar",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}

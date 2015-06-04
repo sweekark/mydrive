@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- Parse.js -->
+    <script src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+    <script src="js/blog.js"></script>
+</head>
+<body>
+
+<div id="example" role="application">
+    <div id="tshirt-view" class="demo-section k-header">
+        <h2>Customize your Kendo T-shirt</h2>
+        <img id="tshirt" src="../content/web/combobox/tShirt.png" />
+        <div id="options">
+            <h4>T-shirt Fabric</h4>
+            <input id="fabric" placeholder="Select fabric..." />
+
+            <h4>T-shirt Size</h4>
+            <select id="size" placeholder="Select size..." class="form-control">
+            </select>
+
+            <button class="k-button k-primary" id="get">Customize</button>
+        </div>
+    </div>
+    <style>
+        .demo-section {
+            width: 500px;
+            height: 340px;
+        }
+        .demo-section h2 {
+            text-transform: uppercase;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .demo-section h4 {
+            margin-top: 1.5em;
+        }
+        #tshirt {
+            float: left;
+            margin: 0 40px 30px 0;
+        }
+        #options {
+            padding: 20px 0 30px 30px;
+        }
+        #get {
+            margin-top: 25px;
+        }
+        .k-readonly
+        {
+            color: gray;
+        }
+    </style>
+
+    <script>
+        /*
+        $(document).ready(function() {
+            // create ComboBox from input HTML element
+            $("#fabric").kendoComboBox({
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource: [
+                    { text: "Cotton", value: "1" },
+                    { text: "Polyester", value: "2" },
+                    { text: "Cotton/Polyester", value: "3" },
+                    { text: "Rib Knit", value: "4" }
+                ],
+                filter: "contains",
+                suggest: true,
+                index: 3
+            });
+
+            // create ComboBox from select HTML element
+            $("#size").kendoComboBox();
+
+            var fabric = $("#fabric").data("kendoComboBox");
+            var select = $("#size").data("kendoComboBox");
+
+
+            $("#get").click(function() {
+                alert('Thank you! Your Choice is:\n\nFabric ID: ' + fabric.value() + ' and Size: ' + select.value());
+            });
+        });*/
+    </script>
+</div>
+
+
+</body>
+</html>
