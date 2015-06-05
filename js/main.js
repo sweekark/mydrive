@@ -6,7 +6,7 @@
 requirejs.config({
     baseUrl: 'js',
     paths: {
-        app: '../app',
+        app: 'app',
         "parse": "http://www.parsecdn.com/js/parse-1.2.19.min",
         "jquery": "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
         "bootstrap": "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min",

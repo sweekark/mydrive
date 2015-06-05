@@ -6,25 +6,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
     <script src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
-
-    <!--<link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />-->
-    <!--<script type="text/javascript" src="bower_components/moment/moment.js"></script>-->
-    <!--<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>-->
 
     <!--From my html-->
     <link rel="stylesheet" href="css/dashboard.css">
-    <script src="js/map.js"></script>
-    <script src="js/layout.js"></script>
+    <script src="js/trip.js"></script>
 
     <style>
         html,
@@ -52,10 +46,14 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <!--
 <ul class="nav navbar-nav navbar-right">
-<li><a href="#">Dashboard</a></li>
-<li><a href="#">Settings</a></li>
-<li><a href="#">Profile</a></li>
-<li><a href="#">Help</a></li>
+    <li><a href="#">Dashboard</a>
+    </li>
+    <li><a href="#">Settings</a>
+    </li>
+    <li><a href="#">Profile</a>
+    </li>
+    <li><a href="#">Help</a>
+    </li>
 </ul>
 -->
                 <form class="navbar-form navbar-right" id="submitForm">
@@ -69,9 +67,9 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="map.html">Dashboard <span class="sr-only">(current)</span></a>
+                    <li><a href="map.html">Dashboard <span class="sr-only">(current)</span></a>
                     </li>
-                    <li><a href="trip.html">Trips</a>
+                    <li class="active"><a href="trip.html">Trips</a>
                     </li>
                     <li><a href="driver.html">Drivers</a>
                     </li>
@@ -79,34 +77,23 @@
                     </li>
                 </ul>
 
-                <div class="radio">
-                    <label>
-                        <input type="radio" checked="" name="optradio" value="allusers">All Drives </label>
-                </div>
 
-                <h4>User</h4>
-                <select id="user" placeholder="Select User..." class="form-control">
-                </select>
-                <!--                    <h4>Date</h4>-->
-                <!--                    <input type="text" class="form-control" name="datepicker" id="datepicker" placeholder="Enter Date">-->
-
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optradio" value="trace">Trace </label>
-                </div>
-
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optradio" value="checkin">Checkins </label>
-                </div>
-
-                <input type="button" name="submit-bt" id="submit-bt" value="submit" class="btn btn-info pull-right">
-
-                </form>
             </div>
             <div style="width: 80%; height: 80%; position: absolute;" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">Dashboard</h1>
-                <div id="map-canvas"></div>
+                <h1 class="page-header">All Trips </h1>
+
+                <table id="example" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Driver</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Sate</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                        </tr>
+                    </thead>
+                </table>
 
             </div>
         </div>
