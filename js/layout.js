@@ -315,7 +315,6 @@ function plotPolyline(userid) {
                 }
             }
             drawPolyline(flightPlanCoordinates, map);
-
         },
         error: function (error) {
             alert("Error: " + error.code + " " + error.message);

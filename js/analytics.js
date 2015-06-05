@@ -77,7 +77,7 @@
 
          $('#distanceContainer').highcharts({
              title: {
-                 text: 'Total Distance Travlled This Week',
+                 text: 'Total Distance Travelled This Week',
                  x: -20 //center
              },
 

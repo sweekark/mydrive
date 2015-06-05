@@ -14,12 +14,20 @@
          tryLogin();
      })
 
+     $("#logout").click(function () {
+         logout();
+     })
+
+     function logout() {
+         Parse.User.logOut();
+     }
+
      function tryLogin(form) {
 
          var username = "sweekar" //form.username.value;
          var password = "sweekar" //form.password.value;
 
-         console.log("Username: " + username + " Password: " + password);
+         //console.log("Username: " + username + " Password: " + password);
          Parse.User.logIn(username, password, {
              success: function (user) {
                  window.location.href = "map.html";
