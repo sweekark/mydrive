@@ -13,7 +13,7 @@
                  type: 'column'
              },
              title: {
-                 text: 'No Of Drives This Week'
+                 text: 'No Of Trips This Week'
              },
              xAxis: {
                  categories: ['01/06/2013', '02/06/2013', '03/06/2013', '04/06/2013', '05/06/2013']
@@ -21,7 +21,7 @@
              yAxis: {
                  min: 0,
                  title: {
-                     text: 'Total fruit consumption'
+                     text: 'No Of Trips'
                  },
                  stackLabels: {
                      enabled: true,
@@ -62,15 +62,17 @@
                  }
              },
              series: [{
-                 name: 'Sweekar',
-                 data: [5, 3, 4, 7, 2]
+                     name: 'Successfull',
+                     data: [5, 3, 4, 7, 2]
         }, {
-                 name: 'Jayanth',
-                 data: [2, 2, 3, 2, 1]
-        }, {
-                 name: 'Satyam',
-                 data: [3, 4, 4, 2, 5]
-        }]
+                     name: 'Failure',
+                     data: [2, 2, 3, 2, 1]
+        },
+                                // {
+                                     //                 name: 'Satyam',
+                                     //                 data: [3, 4, 4, 2, 5]
+                                     //        }
+                                     ]
          });
 
 

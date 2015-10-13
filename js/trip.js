@@ -6,6 +6,10 @@
      // show the signup or login page
      //Parse.User.logOut();
  }
+ if (!currentUser) {
+     // do stuff with the user
+     window.location.href = "index.html";
+ }
 
  var map;
 
@@ -17,114 +21,144 @@
  //     map = new google.maps.Map(document.getElementById('trip-canvas'),
  //         mapOptions);
  // }
- function initialize() {
-     var directionsDisplay;
-     var directionsService = new google.maps.DirectionsService();
-     var map;
+ function showRoute(object) {
+   var directionsDisplay;
+   var directionsService = new google.maps.DirectionsService();
+   var map;
+   directionsDisplay = new google.maps.DirectionsRenderer();
+   var mapOptions = {
+       zoom: 8,
+       center: new google.maps.LatLng(0, -180)
+   };
+   map = new google.maps.Map(document.getElementById('trip-canvas'), mapOptions);
+   directionsDisplay.setMap(map);
 
-     //function initialize() {
-     directionsDisplay = new google.maps.DirectionsRenderer();
-     var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-     var mapOptions = {
-         zoom: 7,
-         //center: chicago
-         center: new google.maps.LatLng(0, -180)
-     };
-     map = new google.maps.Map(document.getElementById('trip-canvas'), mapOptions);
-     directionsDisplay.setMap(map);
-     //}
+   start = new google.maps.LatLng(object.start.latitude, object.start.longitude);
+   end = new google.maps.LatLng(object.end.latitude, object.end.longitude);
 
-     //function calcRoute() {
 
-     var GameScore = Parse.Object.extend("Location");
+   var Location = Parse.Object.extend("Location");
+   var query = new Parse.Query(Location);
+   query.equalTo("tripID",object.get("tripID"));
+   query.limit(100);
+   var waypoints =
+   [
+     {
+       location: new google.maps.LatLng(13.0178548,77.6652938),
+       stopover: false
+     }
+   ];
+   var waypts = [];
+   query.find({
+     success: function (results) {
+       var count = results.length;
+       var index = parseInt(count / 8 );
+         for (var i = 0; i < 8; i++) {
+           var pointer = (i*index + index) - 1 ;
+             var latlong = results[pointer].get("location");
+             waypts.push({
+               location:new google.maps.LatLng(latlong.latitude,latlong.longitude),
+               stopover:false});
+           }
+          var request = {
+            origin: start,
+            destination: end,
+            waypoints:waypts,
+            travelMode: google.maps.TravelMode.DRIVING
+          };
+          directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              directionsDisplay.setDirections(response);
+            }
+          });
+         }
+     });
+   }
+
+ $(document).ready(function () {
+     var selected = [];
+     var object = [];
+     var GameScore = Parse.Object.extend("Trip");
      var query = new Parse.Query(GameScore);
-     // query.equalTo("userID", userid);
-     var date = new Date();
+     var user = new Parse.User();
+     query.include('user');
      query.descending("createdAt");
-     // query.greaterThanorEqualTo("createdAt",date.getDate());
-     query.limit(1000);
-     var start;
      query.find({
          success: function (results) {
              for (var i = 0; i < results.length; i++) {
-                 var object = results[i];
-                 if (object.get("checkIn") == true) {
-                     //  drawMarker(object, map);
+                 var data = results[i];
+                 var startTime = moment(data["createdAt"]).format('MMMM Do, h:mm:ss a');
+                 var endTime = moment(data["updatedAt"]).format('MMMM Do, h:mm:ss a');
+                 var user = [];
+                 if ( data.get("endLocation") == undefined){
+                     data["status"] = "In Progress";
                  } else {
-                     if (i == 0) {
-                         start = new google.maps.LatLng(object.get("location").latitude, object.get("location").longitude);
-                     }
-                     if (i == (results.length - 1)) {
-                         end = new google.maps.LatLng(object.get("location").latitude, object.get("location").longitude);
-                     }
+                      data["status"] = "Completed";
                  }
+                 data["start"] = data.get("startLocation");
+                 data["end"] = data.get("endLocation");
+                 data["user"] = data.get("user").get("username");
+                 data["phone"] = data.get("updatedAt");
+
+                 data["startTime"] = startTime;
+                 data["endTime"] = endTime;
+                 object.push(data);
              }
+             $('#example').dataTable({
+                 //"ajax": "data/objects.txt",
+                  "aaSorting": [],
+                 "data": object,
+                 "columns": [
+                     {
+                         "data": "user"
+             },
+                     {
+                         "data": "startTime"
+             },
+                     {
+                         "data": "endTime"
+             }, {
+                         "data": "status"
+             },
+                     {
+                         "mDataProp": null,
+                         "bSearchable": false,
+                         "bSortable": false,
+                         "sDefaultContent": '<i class="fa fa-map-marker"></i>'
+                     },
 
-             //var start = new google.maps.LatLng(12.937070, 77.626605);
-
-             //end = new google.maps.LatLng(12.957026, 77.700714);
-             end = new google.maps.LatLng(12.9119628556504, 77.5845909118652);
-
-
-             //var start = 'Chicago';
-             //var end = 'Joplin, MO';
-             var request = {
-                 origin: start,
-                 destination: end,
-                 travelMode: google.maps.TravelMode.DRIVING
-             };
-             directionsService.route(request, function (response, status) {
-                 if (status == google.maps.DirectionsStatus.OK) {
-                     directionsDisplay.setDirections(response);
+        ],
+                 "rowCallback": function (row, data) {
+                     if ($.inArray(data.DT_RowId, selected) !== -1) {
+                         $(row).addClass('selected');
+                     }
                  }
              });
-         }
-     });
-     //}
+             var table = $('#example').DataTable();
 
-     //    google.maps.event.addDomListener(window, 'load', initialize);
+             $('#example tbody').on('click', 'tr', function () {
 
- }
+                 selectedIndex = table.row(this).index();
+                 selectedData = table.rows(selectedIndex).data()
+                 if ($(this).hasClass('selected')) {
+                     $(this).removeClass('selected');
+                 } else {
+                     table.$('tr.selected').removeClass('selected');
+                     $(this).addClass('selected');
+                 }
+                 showRoute(selectedData[0]);
+             });
 
- google.maps.event.addDomListener(window, 'load', initialize);
+             $('#button').click(function () {
+                 table.row('.selected').remove().draw(false);
+             });
 
 
- $(document).ready(function () {
-     $('#example').dataTable({
-         "ajax": "data/objects.txt",
-         "columns": [
-             {
-                 "data": "name"
-             },
-             {
-                 "data": "position"
-             },
-             {
-                 "data": "office"
-             },
-             {
-                 "data": "extn"
-             },
-             {
-                 "data": "start_date"
-             },
-             {
-                 "data": "salary"
-             }
-        ]
-     });
-     var table = $('#example').DataTable();
-
-     $('#example tbody').on('click', 'tr', function () {
-         if ($(this).hasClass('selected')) {
-             $(this).removeClass('selected');
-         } else {
-             table.$('tr.selected').removeClass('selected');
-             $(this).addClass('selected');
-         }
+         },
+         error: function (error) {
+             alert("Error: " + error.code + " " + error.message);
+         },
      });
 
-     $('#button').click(function () {
-         table.row('.selected').remove().draw(false);
-     });
+
  })

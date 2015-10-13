@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -16,7 +17,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/locales.min.js"></script>
     <!--<link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />-->
     <!--<script type="text/javascript" src="bower_components/moment/moment.js"></script>-->
     <!--<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>-->
@@ -25,6 +27,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <!--    <script src="js/map.js"></script>-->
     <script src="js/layout.js"></script>
+    <script src="js/fontawesome-markers.min.js"></script>
     <!--    <script src="js/login.js"></script>-->
 
     <style>
@@ -62,17 +65,22 @@
                     </li>
                 </ul>
 
+                <!--
                 <div class="radio">
                     <label>
                         <input type="radio" checked="" name="optradio" value="allusers">All Drives </label>
                 </div>
+-->
 
+                <!--
                 <h4>User</h4>
                 <select id="user" placeholder="Select User..." class="form-control">
                 </select>
+-->
                 <!--                    <h4>Date</h4>-->
                 <!--                    <input type="text" class="form-control" name="datepicker" id="datepicker" placeholder="Enter Date">-->
 
+                <!--
                 <div class="radio">
                     <label>
                         <input type="radio" name="optradio" value="trace">Trace </label>
@@ -82,12 +90,80 @@
                     <label>
                         <input type="radio" name="optradio" value="checkin">Checkins </label>
                 </div>
+-->
 
+                <!--
                 <input type="button" name="submit-bt" id="submit-bt" value="submit" class="btn btn-info pull-right">
 
-                </form>
+</form>
+-->
             </div>
+
+
             <div style="width: 80%; height: 80%; position: absolute;" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="panel panel-default home-panel">
+                    <div class="panel-heading">
+                        <h4>Today's Data</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="panel widget bg-primary">
+                        <div class="row row-table">
+                            <div class="col-xs-4 text-center bg-primary-dark1 pv-lg">
+                                <em class="fa fa-car fa-3x car"></em>
+                            </div>
+                            <div class="col-xs-8 pv-lg">
+                                <div class="h2 mt0 ng-binding" id="totalTrips">2</div>
+                                <div class="text-uppercase">Total Trips Today</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <!-- START widget-->
+                    <div class="panel widget bg-purple">
+                        <div class="row row-table">
+                            <div class="col-xs-4 text-center bg-purple-dark1 pv-lg">
+                                <em class="fa fa-user fa-3x user"></em>
+                            </div>
+                            <div class="col-xs-8 pv-lg dashboard-data">
+                                <div class="h2 mt0 ng-binding" id=driversToday>3
+                                </div>
+                                <div class="text-uppercase ">Drivers Today</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <!-- START widget-->
+                    <div class="panel widget bg-green">
+                        <div class="row row-table">
+                            <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                                <em class="fa fa-car fa-3x car"></em>
+                            </div>
+                            <div class="col-xs-8 pv-lg">
+                                <div class="h2 mt0 ng-binding">0</div>
+                                <div class="text-uppercase">Total Kms done Today</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <!-- START widget-->
+                    <div class="panel widget bg-purple">
+                        <div class="row row-table">
+                            <div class="col-xs-4 text-center bg-purple-dark1 pv-lg">
+                                <em class="fa fa-user fa-3x user"></em>
+                            </div>
+                            <div class="col-xs-8 pv-lg dashboard-data">
+                                <div class="h2 mt0 ng-binding" id="driversInTrip">0
+                                </div>
+                                <div class="text-uppercase ">Drivers In Trip</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h1 class="page-header">Dashboard</h1>
                 <div id="map-canvas"></div>
 

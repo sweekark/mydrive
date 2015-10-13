@@ -6,12 +6,13 @@
      // do stuff with the user
      window.location.href = "map.html";
  } else {
+     //window.location.href = "/";
      // show the signup or login page
      //Parse.User.logOut();
  }
  $(document).ready(function () {
-     $("#submit").click(function () {
-         tryLogin();
+     $("#submit").click(function (form) {
+         tryLogin(form);
      })
 
      $("#logout").click(function () {
@@ -23,11 +24,8 @@
      }
 
      function tryLogin(form) {
-
-         var username = "sweekar" //form.username.value;
-         var password = "sweekar" //form.password.value;
-
-         //console.log("Username: " + username + " Password: " + password);
+         var username = $("#username").val()
+         var password = $("#password").val()
          Parse.User.logIn(username, password, {
              success: function (user) {
                  window.location.href = "map.html";

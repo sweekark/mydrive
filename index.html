@@ -1,6 +1,19 @@
 <head>
     <link rel="stylesheet" href="css/login.css">
-    <script data-main="js/main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.js"></script>
+    <!--    <script data-main="js/main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.js"></script>-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></<script>
+
+    </script>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="js/login.js"></script>
 </head>
 <div class="container">
     <div class="wrapper">
@@ -9,8 +22,8 @@
             <hr class="colorgraph">
             <br>
 
-            <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
-            <input type="password" class="form-control" name="password" placeholder="Password" required="" />
+            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required="" autofocus="" />
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="" />
 
             <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" id="submit" type="button">Login</button>
         </form>
